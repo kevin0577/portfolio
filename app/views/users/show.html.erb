@@ -1,0 +1,35 @@
+<div class="mypage">
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-2"><h2>マイページ</h2></div>
+</div>
+
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-2">
+		<%= attachment_image_tag @user, :profile_image,:fill, 50, 50, fallback: "no_image.jpg"%>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-2">
+		<%= @user.name %><br>
+		<%= @user.bike_name %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<h3>投稿</h3><br>
+		<table>
+			<tbody>
+				<% @bikes.each do |b| %>
+				<tr>
+					<td><%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %><br>
+						<%= b.title %>
+					</td>
+				<% end %>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>

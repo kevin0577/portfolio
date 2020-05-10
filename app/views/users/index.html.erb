@@ -1,0 +1,27 @@
+<div class="userlist">
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-2"><h3>ユーザー一覧</h3></div>
+	<div class="col-xs-5 col-xs-offset-3">
+	<table class="table table-hov">
+		<thead>
+			<tr>
+				<th></th>
+				<th>名前</th>
+				<th>バイク種類</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |u| %>
+			<tr>
+				<td>
+					<%= attachment_image_tag @user, :profile_image,:fill, 50, 50, fallback: "no_image.jpg" %>
+				</td>
+				<td><%= u.name %></td>
+				<td><%= u.bike_name %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+</div>
+</div>
