@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<div class="bikelist">
+<div class="row">
+	<div class="col-xs-5 col-xs-offset-1"><h2>投稿詳細画面</h2></div>
+	<div class="col-xs-2 col-xs-offset-7">
+		<%= link_to "編集", edit_bike_path, class: "btn btn-success"%>
+	</div>
+	<div class="col-xs-2">
+		<%= link_to "削除", bikes_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+	</div>
+</div><br>
+
+<div class=""></div>
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-hov" >
+			<div class="img">
+				<%= image_tag attachment_url(@bike, :image, :fill, 500, 500, format: "jpg") %>
+			</div><br>
+			<div class="col-xs-offset-2">
+				<%= @bike.title %>
+			</div><br>
+			<div class="col-xs-offset-1">
+				<%= image_tag attachment_url(@bike.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+			</div>
+			<div class="col-xs-offset-1">
+				<p>名前:<%= @bike.user.name %></p>
+				<p>バイク:<%= @bike.user.bike_name %></p>
+			</div><br>
+		</div>
+	</div>
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+				<div class="row">
+					<div class="col-xs-12 col-xs-offset-3">
+						<h4>コメント一覧</h4>
+						<%= @comments.count %>件コメント
+						<div class="comment_area">
+							<%= render "comments/comment" %>
+						</div>
+							<%= render "comments/form" %>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>

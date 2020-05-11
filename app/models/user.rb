@@ -25,4 +25,8 @@ class User < ApplicationRecord
  def following?(user)
  	following_user.include?(user)
  end
+
+  validates :name, presence: true,length: { minimum: 2, maximum: 20 }
+  validates :bike_name, presence: true,length: { minimum: 2, maximum: 20 }
+
 end

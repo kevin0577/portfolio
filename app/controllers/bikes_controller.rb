@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
 	def index
-		@bikes = Bike.all
+		@bikes = Bike.all.order(created_at: :desc)
 	end
 
 	def new
@@ -9,6 +9,8 @@ class BikesController < ApplicationController
 
 	def show
 		@bike = Bike.find(params[:id])
+		@comment = Comment.new
+		@comments = @bike.comments
 	end
 
 	def edit
@@ -16,9 +18,10 @@ class BikesController < ApplicationController
 	end
 
 	def create
-		newbike = Bike.new(bike_params)
-		newbike.user_id = current_user.id
-		if newbike.save
+		@newbike = Bike.new(bike_params)
+		@newbike.user_id = current_user.id
+		if @newbike.save
+			flash[:notice] = "successfully create bike!"
 			redirect_to bikes_path
 		else
 			render :new
@@ -26,10 +29,19 @@ class BikesController < ApplicationController
 	end
 
 	def update
-		bike = Bike.find(params[:id])
-		if bike.update(bike_params)
+		@bike = Bike.find(params[:id])
+		if @bike.update(bike_params)
+			flash[:notice] = "successfully update bike!"
 			redirect_to bike_path(bike.id)
+		else
+			render :edit
 		end
+	end
+
+	def destroy
+		@bike = Bike.find(params[:id])
+		@bike.destroy
+		redirect_to bikes_path, notice: "successfully delete bike!"
 	end
 
 	private

@@ -1,35 +1,44 @@
+<p id="notice"><%= notice %></p>
+
 <div class="mypage">
 <div class="row">
-	<div class="col-xs-3 col-xs-offset-2"><h2>マイページ</h2></div>
-</div>
+	<div class="col-xs-5 col-xs-offset-2"><h2>マイページ</h2></div>
+</div><br>
 
 <div class="row">
 	<div class="col-xs-3 col-xs-offset-2">
-		<%= attachment_image_tag @user, :profile_image,:fill, 50, 50, fallback: "no_image.jpg"%>
+		<%= image_tag attachment_url(@user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+	</div>
+</div><br>
+
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-2">
+		<p>名前:<%= @user.name %></p>
+		<p>バイク:<%= @user.bike_name %></p>
+	</div>
+	<div class="col-xs-3 col-xs-offset-4">
+		<%= link_to "プロフィール編集", edit_user_path, class: "btn btn-primary" %>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-xs-3 col-xs-offset-2">
-		<%= @user.name %><br>
-		<%= @user.bike_name %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-8 col-xs-offset-2">
-		<h3>投稿</h3><br>
-		<table>
+	<div class="col-xs-12">
+		<table class="table table-hov" >
 			<tbody>
 				<% @bikes.each do |b| %>
-				<tr>
-					<td><%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %><br>
-						<%= b.title %>
-					</td>
+					<tr>
+						<td>
+						<div class="img">
+						<%= link_to bike_path(b.id) do %>
+						<%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %>
+						<% end %>
+						</div><br>
+						<div class="col-xs-offset-2"><%= b.title %></div>
+						</td>
+					</tr>
 				<% end %>
-				</tr>
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
 </div>

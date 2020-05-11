@@ -1,6 +1,8 @@
+<p id="notice"><%= notice %></p>
+
 <div class="bikelist">
 <div class="row">
-	<div class="col-xs-3 col-xs-offset-1"><h2>投稿一覧</h2></div>
+	<div class="col-xs-5 col-xs-offset-1"><h2>投稿一覧</h2></div>
 </div><br>
 
 <div class="row">
@@ -11,11 +13,24 @@
 					<tr>
 						<td>
 						<div class="img">
-						<%= link_to bike_path(b.id) do %>
-						<%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %>
-						<% end %>
+							<%= link_to bike_path(b.id) do %>
+							<%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %>
+							<% end %>
 						</div><br>
-						<div class="col-xs-offset-2"><%= b.title %></div>
+						<div class="col-xs-offset-2"><%= b.title %></div><br>
+						<div class="row">
+							<div class="col-xs-offset-1">
+								<%= link_to user_path(b.user.id) do %>
+								<%= image_tag attachment_url(b.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+								<% end %>
+							</div><br>
+							<div class="col-xs-offset-1">
+								<p>名前:
+								<%= b.user.name %></p>
+								<p>バイク:
+								<%= b.user.bike_name %></p>
+							</div>
+						</div><br>
 						</td>
 					</tr>
 				<% end %>

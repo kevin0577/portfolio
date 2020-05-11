@@ -1,0 +1,10 @@
+<div class="commentlist">
+	<% @comments.each do |c| %>
+	<%= image_tag attachment_url(c.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+	<p>名前:
+	<%= c.user.name %></p>
+
+	<%= c.comment %>
+	<%= link_to "削除", bike_comment_path(@bike_id, c.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+	<% end %>
+</div>

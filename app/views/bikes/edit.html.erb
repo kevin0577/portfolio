@@ -1,20 +1,20 @@
-<%= render 'layouts/errors', obj: @newbike %>
+<%= render 'layouts/errors', obj: @bike %>
 
-<div class="postform">
+<div class="postedit">
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-2"><h2>投稿フォーム</h2></div>
+	<div class="col-xs-5 col-xs-offset-2"><h2>投稿編集</h2></div>
 </div><br>
 
 <div class="row">
 	<div class="col-xs-9 col-xs-offset-4">
-		<%= form_for(@newbike) do |f| %>
+		<%= form_for(@bike) do |f| %>
             <%= f.attachment_field :image %><br>
 		<div class="field row">
 			<%= f.text_area :title, placeholder: "タイトル", size: "80x10", class: "col-xs-6" %>
 		</div><br>
 
 		<div class="actions row">
-			<%= f.submit "投稿", class: "btn btn-primary col-xs-6" %>
+			<%= f.submit "変更を保存", class: "btn btn-primary col-xs-6" %>
 		</div>
 		<% end %>
 	</div>

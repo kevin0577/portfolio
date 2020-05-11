@@ -1,3 +1,13 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image{
+	background-image: url("2020-05-09 18.21のイメージ.jpeg");
+	height: 800px;
+ 	background-size: cover;
+}
+.title{
+	font-size: 40px;
+	font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
