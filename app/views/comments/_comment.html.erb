@@ -1,10 +1,24 @@
 <div class="commentlist">
-	<% @comments.each do |c| %>
-	<%= image_tag attachment_url(c.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
-	<p>名前:
-	<%= c.user.name %></p>
-
-	<%= c.comment %>
-	<%= link_to "削除", bike_comment_path(@bike_id, c.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-	<% end %>
+<div class="col-xs-offset-1">
+<%= comments.count %>件コメント
+</div>
+<% comments.each do |c| %>
+	<table class="table table-hov">
+		<tbody>
+			<tr>
+				<td>
+					<div class="col-xs-offset-1">
+					<p>名前:
+					<%= c.user.name %></p>
+					<p>コメント</p>
+					<%= c.comment %>
+				    <% if c.user == current_user %>
+					<%= link_to "削除", bike_comment_path(c.bike_id, c.id), method: :delete, "data-confirm" => "本当に削除しますか？", remote: true %>
+					<% end %>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>
 </div>

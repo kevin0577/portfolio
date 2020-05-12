@@ -7,4 +7,8 @@ class Bike < ApplicationRecord
 
 	validates :image, presence: true
 	validates :title, presence: true,length: { maximum: 300 }
+
+	def like_by?(user)
+		likes.where(user_id: user.id).exists?
+	end
 end

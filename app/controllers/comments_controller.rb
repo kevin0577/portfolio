@@ -1,16 +1,18 @@
 class CommentsController < ApplicationController
 	def create
 		@bike = Bike.find(params[:bike_id])
-		@comment = Comment.new(comment_params)
-		@comment.user_id = current_user.id
-		@comment.save
-		redirect_back(fallback_location: root_path)
+		@comment = current_user.comments.new(comment_params)
+		@comment.bike_id = @bike.id
+		if @comment.save
+			render :comment
+		end
 	end
 
 	def destroy
-		@comment = comment.find(params[:id])
-		@comment.destroy
-		redirect_back(fallback_location: root_path)
+		@comment = Comment.find(params[:id])
+		if @comment.destroy
+			render :comment
+		end
 	end
 
 	private

@@ -12,8 +12,7 @@ end
 resources :bikes do
 	resources :comments, only: [:create, :destroy]
 	resource :bookmarks, only: [:index, :create, :destroy]
-	post "like/:bike_id" => "likes#like", as: "like"
-	delete "like/:bike_id" => "likes#unlike", as: "unlike"
+  resource :likes, only: [:create, :destroy]
 end
 
 end

@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
-		@bikes = @user.bikes
+		@bikes = @user.bikes.order(created_at: :desc).page(params[:page]).per(5)
 	end
 
 	def index
-		@users = User.all
+		@users = User.all.page(params[:page]).per(10)
 	end
 
 	def edit
