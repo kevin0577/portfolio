@@ -20,14 +20,6 @@
 				</td>
 				<td><%= u.name %></td>
 				<td><%= u.bike_name %></td>
-				<td><%if corrent_user != user %>
-					<% if current_user.following?(u) %>
-						<%= link_to "フォロー外す",unfollow_path(u), class: "btn btn-primary" %>
-						<% else %>
-						<%= link_to "フォローする",follow_path(u), class: "btn btn-primary" %>
-					<% end %>
-				<% end %>
-				</td>
 			</tr>
 			<% end %>
 		</tbody>
