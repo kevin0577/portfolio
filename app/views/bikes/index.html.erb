@@ -19,8 +19,19 @@
 						</div>
 
 						<div class="col-xs-offset-2">
-							<%= b.comments.count %>件コメント
+							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+							<%= b.comments.count %>
 							<%= render partial: "likes/like", locals: {like: b, bike: b} %>
+
+							<div class="col-xs-offset-7">
+								<%if current_user != b.user %>
+								<% if current_user.following?(b.user) %>
+									<%= link_to "フォロー外す",unfollow_path(b.user),method: :post, class: "btn btn-primary" %>
+									<% else %>
+									<%= link_to "フォローする",follow_path(b.user),method: :post, class: "btn btn-success" %>
+								<% end %>
+								<% end %>
+							</div>
 						</div><br>
 
 						<div class="col-xs-offset-2">

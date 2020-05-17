@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root  "home#top"
   get  "home/about" => "home#about"
 resources :users, only: [:index, :show, :edit, :update] do
-  	get "follow"
+  	get "follows"
   	get "follower"
-end
+  end
   	post "follow/:id" => "relationships#follow", as: "follow"
   	post "unfollow/:id" => "relationships#unfollow", as: "unfollow"
 
