@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
 	def index
-		@bikes = Bike.all.order(created_at: :desc).page(params[:page]).per(5)
+		@bikes = Bike.all.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
 	end
 
 	def new

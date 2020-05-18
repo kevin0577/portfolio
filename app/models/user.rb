@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :bikes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :bookmarks_bikes, through: :bookmarks, source: :bike
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

@@ -11,4 +11,8 @@ class Bike < ApplicationRecord
 	def like_by?(user)
 		likes.where(user_id: user.id).exists?
 	end
+
+	def bookmark_by?(user)
+		bookmarks.where(user_id: user.id).exists?
+	end
 end

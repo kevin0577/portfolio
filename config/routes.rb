@@ -11,8 +11,8 @@ resources :users, only: [:index, :show, :edit, :update] do
 
 resources :bikes do
 	resources :comments, only: [:create, :destroy]
-	resource :bookmarks, only: [:index, :create, :destroy]
+	resource :bookmarks, only: [:create, :destroy]
   resource :likes, only: [:create, :destroy]
 end
-
+  get "bookmarks/index"
 end

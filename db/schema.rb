@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_042606) do
     t.integer "bike_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bike_id"], name: "index_bookmarks_on_bike_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
