@@ -27,6 +27,14 @@ class User < ApplicationRecord
  	following_user.include?(user)
  end
 
+ def self.search(search)
+    if search
+      where(["name LIKE ? OR bike_name LIKE ?", "%#{search}%", "%#{search}%"])
+    else
+      all
+    end
+ end
+
   validates :name, presence: true,length: { minimum: 2, maximum: 20 }
   validates :bike_name, presence: true,length: { minimum: 2, maximum: 20 }
 

@@ -1,68 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<div class="postlist">
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-1"><h2>投稿一覧</h2></div>
+	<div class="col-xs-offset-3"><h2 class="title col-xs-3">投稿一覧画面</h2></div>
 </div><br>
 
+<% @bikes.each do |b| %>
+<div class="postlist">
 <div class="row">
-	<div class="col-xs-12">
-		<table class="table table-hov" >
-			<tbody>
-				<% @bikes.each do |b| %>
-					<tr>
-						<td>
-						<div class="img">
-							<%= link_to bike_path(b.id) do %>
-							<%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %>
-							<% end %>
-						</div>
-
-							<!-- コメント・いいね・お気に入り -->
-						<div class="col-xs-offset-2">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-							<%= b.comments.count %>
-							<%= render partial: "likes/like", locals: {like: b, bike: b} %>
-							<%= render partial: "bookmarks/bookmark", locals: {bookmark: b, bike: b} %>
-
-								<!-- フォロー -->
-							<div class="col-xs-offset-7">
-								<%if current_user != b.user %>
-								<% if current_user.following?(b.user) %>
-									<%= link_to "フォロー外す",unfollow_path(b.user),method: :post, class: "btn btn-primary" %>
-									<% else %>
-									<%= link_to "フォローする",follow_path(b.user),method: :post, class: "btn btn-success" %>
-								<% end %>
-								<% end %>
-							</div>
-						</div><br>
-
-						<div class="col-xs-offset-2">
-							<h4>タイトル</h4>
-							<%= b.title %>
-						</div><br>
-
-						<div class="row">
-							<div class="col-xs-offset-1">
-								<%= link_to user_path(b.user.id) do %>
-								<%= image_tag attachment_url(b.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
-								<% end %>
-							</div><br>
-
-							<div class="col-xs-offset-1">
-								<p>名前:
-								<%= b.user.name %></p>
-								<p>バイク:
-								<%= b.user.bike_name %></p>
-							</div>
-
-						</div><br>
-						</td>
-					</tr>
-				<% end %>
-				</tbody>
-			</table>
-			<%= paginate @bikes %>
+		<div class="img">
+			<%= link_to bike_path(b.id) do %>
+			<%= image_tag attachment_url(b, :image, :fill, 500, 500, format: "jpg") %>
+			<% end %>
 		</div>
-	</div>
+
+		<div class="col-xs-offset-2">
+			<!-- コメント -->
+			<div class="inline-block">
+				<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+				<%= b.comments.count %>
+			</div>
+			<!-- いいね -->
+			<div class="inline-block" id="likes_area">
+				<%= render partial: "likes/like", locals: {like: b, bike: b} %>
+			</div>
+			<!-- お気に入り -->
+			<div class="inline-block" id="bookmark_area">
+				<%= render partial: "bookmarks/bookmark", locals: {bookmark: b, bike: b} %>
+			</div>
+		</div>
+		<!-- フォロー -->
+		<div class="col-xs-offset-8">
+			<%if current_user != b.user %>
+			<% if current_user.following?(b.user) %>
+				<%= link_to "フォロー外す",unfollow_path(b.user),method: :post, class: "btn btn-primary" %>
+				<% else %>
+				<%= link_to "フォローする",follow_path(b.user),method: :post, class: "btn btn-success" %>
+			<% end %>
+			<% end %>
+		</div>
+
+		<div class="col-xs-offset-2">
+			<h4>タイトル</h4>
+			<% b.tags.each do |t| %>
+			   ・<%= t.tag_name %>
+			<% end %><br>
+			<%= b.title %>
+		</div><br>
+
+		<div class="col-xs-offset-1">
+			<%= link_to user_path(b.user.id) do %>
+			<%= image_tag attachment_url(b.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+			<% end %>
+		</div><br>
+
+		<div class="col-xs-offset-1">
+			<p>名前:
+			<%= b.user.name %></p>
+			<p>バイク:
+			<%= b.user.bike_name %></p>
+		</div>
 </div>
+</div>
+<% end %>
+<div class="col-xs-offset-3">
+	<%= paginate @bikes %>
+</div>
+

@@ -1,40 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<div class="postdetail">
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-1"><h2>投稿詳細画面</h2></div>
-	<% if @bike.user == current_user %>
-	<div class="col-xs-2 col-xs-offset-7">
-		<%= link_to "編集", edit_bike_path, class: "btn btn-success"%>
-	</div>
-	<div class="col-xs-2">
-		<%= link_to "削除", bikes_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
-	</div>
-	<% end %>
+	<div class="col-xs-offset-3"><h2 class="title col-xs-3">投稿詳細画面</h2></div>
 </div><br>
 
+<div class="postdetail">
 
-<div class=""></div>
 <div class="row">
-	<div class="col-xs-12">
-			<div class="img">
-				<%= image_tag attachment_url(@bike, :image, :fill, 500, 500, format: "jpg") %>
-			</div>
-			<div class="col-xs-offset-2">
-				<%= render partial: "likes/like", locals: {like: @like, bike: @bike} %>
-			</div><br>
-			<div class="col-xs-offset-2">
-				<h4>タイトル</h4>
-				<%= @bike.title %>
-			</div><br>
-			<div class="col-xs-offset-1">
-				<%= image_tag attachment_url(@bike.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
-			</div>
-			<div class="col-xs-offset-1">
-				<p>名前:<%= @bike.user.name %></p>
-				<p>バイク:<%= @bike.user.bike_name %></p>
-			</div><br>
+<% if current_user == @bike.user %>
+	<div class="col-xs-2 col-xs-offset-8">
+	<%= link_to "編集", edit_bike_path, class: "btn btn-success"%>
 	</div>
+	<div class="col-xs-2">
+	<%= link_to "削除", bike_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+	</div>
+<% end %>
+</div><br>
+
+<div class="row">
+		<div class="img">
+			<%= image_tag attachment_url(@bike, :image, :fill, 500, 500, format: "jpg") %>
+		</div>
+
+		<div class="col-xs-offset-2">
+			<!-- いいね -->
+			<div class="inline-block" id="likes_area">
+				<%= render partial: "likes/like", locals: {like: @like, bike: @bike} %>
+			</div>
+		</div>
+		<!-- フォロー -->
+		<div class="col-xs-offset-8">
+			<%if current_user != @bike.user %>
+			<% if current_user.following?(@bike.user) %>
+				<%= link_to "フォロー外す",unfollow_path(@bike.user),method: :post, class: "btn btn-primary" %>
+				<% else %>
+				<%= link_to "フォローする",follow_path(@bike.user),method: :post, class: "btn btn-success" %>
+			<% end %>
+			<% end %>
+		</div>
+
+		<div class="col-xs-offset-2">
+			<h4>タイトル</h4>
+			<% @bike.tags.each do |t| %>
+			   ・<%= t.tag_name %>
+			<% end %><br>
+			<%= @bike.title %>
+		</div><br>
+
+		<div class="col-xs-offset-1">
+			<%= image_tag attachment_url(@bike.user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+		</div><br>
+
+		<div class="col-xs-offset-1">
+			<p>名前:
+			<%= @bike.user.name %></p>
+			<p>バイク:
+			<%= @bike.user.bike_name %></p>
+		</div>
 </div>
 
 <!-- コメント機能 -->

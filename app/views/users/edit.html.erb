@@ -1,27 +1,27 @@
 <%= render 'layouts/errors', obj: @user %>
 
-<div class="useredit">
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-2"><h2>ユーザー編集</h2></div>
+	<div class="col-xs-offset-3"><h2 class="title col-xs-3">ユーザー編集画面</h2></div>
 </div><br>
 
+<div class="useredit">
+<%= form_for(@user) do |f| %>
 <div class="row">
-	<div class="col-xs-9 col-xs-offset-4">
-		<%= form_for(@user) do |f| %>
+	<div class="userimage">
 			<%= image_tag attachment_url(@user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
-            <%= f.attachment_field :profile_image %><br>
-		<div class="field row">
-			<%= f.text_field :name, placeholder: "名前", class: "col-xs-6" %>
+            <%= f.attachment_field :profile_image, class: "col-xs-offset-4" %><br>
+		<div class="field">
+			<%= f.text_field :name, placeholder: "名前" %>
 		</div><br>
 
-		<div class="field row">
-			<%= f.text_field :bike_name, placeholder: "バイク種類", class: "col-xs-6" %>
+		<div class="field">
+			<%= f.text_field :bike_name, placeholder: "バイク種類" %>
 		</div><br>
 
-		<div class="actions row">
-			<%= f.submit "変更を保存", class: "btn btn-primary col-xs-6" %>
+		<div class="actions">
+			<%= f.submit "変更を保存", class: "btn btn-primary col-xs-4 col-xs-offset-4" %>
 		</div>
-		<% end %>
 	</div>
 </div>
+<% end %>
 </div>

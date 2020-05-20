@@ -1,11 +1,11 @@
 <% if bike.like_by?(current_user) %>
-<%= link_to bike_likes_path(bike),method: :delete do %>
+<%= link_to bike_likes_path(bike),method: :delete, remote: true do %>
 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-<%= bike.likes.count %>
 <% end %>
+<%= bike.likes.count %>
 <% else %>
-<%= link_to bike_likes_path(bike),method: :post do %>
+<%= link_to bike_likes_path(bike),method: :post, remote: true do %>
 <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-<%= bike.likes.count %>
 <% end %>
+<%= bike.likes.count %>
 <% end %>

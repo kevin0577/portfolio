@@ -3,16 +3,14 @@ class CommentsController < ApplicationController
 		@bike = Bike.find(params[:bike_id])
 		@comment = current_user.comments.new(comment_params)
 		@comment.bike_id = @bike.id
-		if @comment.save
-			render :comment
-		end
+		@comment.save
+		render :comment
 	end
 
 	def destroy
 		@comment = Comment.find(params[:id])
-		if @comment.destroy
-			render :comment
-		end
+		@comment.destroy
+		render :comment
 	end
 
 	private

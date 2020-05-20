@@ -1,22 +1,36 @@
 <%= render 'layouts/errors', obj: @bike %>
 
-<div class="postedit">
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-2"><h2>投稿編集</h2></div>
+	<div class="col-xs-offset-3"><h2 class="title col-xs-3">投稿編集画面</h2></div>
 </div><br>
 
+<div class="postedit">
+<%= form_for(@bike) do |f| %>
 <div class="row">
-	<div class="col-xs-9 col-xs-offset-4">
-		<%= form_for(@bike) do |f| %>
-            <%= f.attachment_field :image %><br>
-		<div class="field row">
-			<%= f.text_area :title, placeholder: "タイトル", size: "80x10", class: "col-xs-6" %>
+	<div class="postimage">
+            <%= f.attachment_field :image, class: "col-xs-offset-2"%><br>
+
+		<div class="field">
+			<%= f.text_area :title, placeholder: "タイトル", size: "50x10" %>
 		</div><br>
 
-		<div class="actions row">
-			<%= f.submit "変更を保存", class: "btn btn-primary col-xs-6" %>
+		<div class="check_box">
+			<p>タグ</p>
+			<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |t| %>
+				<div>
+				<%= t.label do %>
+				<%= t.check_box %>
+				<%= t.text %>
+				<% end %>
+				</div>
+			<% end %>
 		</div>
-		<% end %>
+		<br>
+
+		<div class="actions">
+			<%= f.submit "変更を保存", class: "btn btn-primary col-xs-4 col-xs-offset-4" %>
+		</div>
 	</div>
 </div>
+<% end %>
 </div>

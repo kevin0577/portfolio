@@ -32,7 +32,7 @@ class BikesController < ApplicationController
 		@bike = Bike.find(params[:id])
 		if @bike.update(bike_params)
 			flash[:notice] = "successfully update bike!"
-			redirect_to bike_path(bike.id)
+			redirect_to bike_path(@bike)
 		else
 			render :edit
 		end
@@ -46,7 +46,7 @@ class BikesController < ApplicationController
 
 	private
 	def bike_params
-		params.require(:bike).permit(:image, :title)
+		params.require(:bike).permit(:image, :title, tag_ids: [])
 	end
 
 end

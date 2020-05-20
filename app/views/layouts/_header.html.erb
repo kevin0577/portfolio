@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse" style="margin: 0; padding: 10px 100px" >
   <div class="container-fluid">
     <div class="navbar-header">
-      <h1 class="title"><%= link_to "BIKERS", root_path %></h1>
+      <h1 class="header"><%= link_to "BIKERS", root_path %></h1>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -17,6 +17,12 @@
           <li><%= link_to "ログイン", new_user_session_path %></li>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
         <% end %>
+        <div class="search col-xs-offset-6">
+          <%= form_tag(users_path, :method => "get") do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag "search", :name => nil %>
+          <% end %>
+        </div>
       </ul>
     </div>
   </div>
