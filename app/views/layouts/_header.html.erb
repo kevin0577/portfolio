@@ -12,17 +12,17 @@
           <li><%= link_to "投稿一覧", bikes_path %></li>
           <li><%= link_to "投稿フォーム", new_bike_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <div class="search col-xs-offset-6">
+          <%= form_tag(users_search_path, :method => "get") do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag "search" %>
+          <% end %>
+          </div>
           <% else %>
           <li><%= link_to "about", home_about_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
         <% end %>
-        <div class="search col-xs-offset-6">
-          <%= form_tag(users_path, :method => "get") do %>
-          <%= text_field_tag :search %>
-          <%= submit_tag "search", :name => nil %>
-          <% end %>
-        </div>
       </ul>
     </div>
   </div>

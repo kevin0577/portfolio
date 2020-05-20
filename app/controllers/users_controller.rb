@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.all.page(params[:page]).per(10).search(params[:search])
+		@users = User.all.page(params[:page]).per(10)
 	end
 
 	def edit
@@ -30,6 +30,10 @@ class UsersController < ApplicationController
 	def follower
 		@user = User.find(params[:user_id])
 		@users = User.page(params[:page]).per(10)
+	end
+
+	def search
+		@users = User.all.search(params[:search]).page(params[:page]).per(10)
 	end
 
 	private

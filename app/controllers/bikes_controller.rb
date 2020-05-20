@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
 	def index
-		@bikes = Bike.all.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+		@bikes = params[:tag_id].present? ? Tag.find(params[:tag_id]).bikes.page(params[:page]).per(5) : Bike.all.includes(:user).page(params[:page]).per(5).order(created_at: :desc)
 	end
 
 	def new
