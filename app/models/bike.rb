@@ -13,9 +13,17 @@ class Bike < ApplicationRecord
 	def like_by?(user)
 		likes.where(user_id: user.id).exists?
 	end
+	# ユーザーがいいねしているかどうかの判定
 
 	def bookmark_by?(user)
 		bookmarks.where(user_id: user.id).exists?
 	end
 
+	def Bike.search(search, user_or_bike)
+	    if user_or_bike == "2"
+	      Bike.where(["title LIKE ?", "%#{search}%"])
+	    else
+	      all
+	    end
+	 end
 end

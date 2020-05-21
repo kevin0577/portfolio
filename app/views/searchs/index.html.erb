@@ -1,19 +1,48 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
-	<div class="col-xs-offset-3"><h2 class="title col-xs-3">投稿一覧画面</h2>
-	</div>
-	<h3 class="col-xs-1">
-			<%= form_tag bikes_path, method: :get do %>
-			<%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
-			{
-			prompt: 'タグで絞り込み検索',
-			onchange: 'submit(this.form);'
-			}
-			%>
-	    <% end %>
-	</h3>
+<div class="col-xs-offset-1"><h2 class="title col-xs-3">検索結果</h2></div>
 </div><br>
+
+<% if @user_or_bike == "1" %>
+
+<div class="userlist">
+<div class="row">
+	<div class="col-xs-9 col-xs-offset-2">
+		<table class="table table-hov">
+			<thead>
+			<tr>
+				<th></th>
+				<th>名前</th>
+				<th>バイク</th>
+			</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |u| %>
+				<tr>
+					<td>
+					<%= link_to user_path(u.id) do %>
+					<%= image_tag attachment_url(u, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no_image.jpg") %>
+					<% end %>
+					</td>
+					<td><%= u.name %></td>
+					<td><%= u.bike_name %></td>
+					<td><%if current_user != u %>
+					<% if current_user.following?(u) %>
+					<%= link_to "フォロー外す",unfollow_path(u),method: :post, class: "btn btn-primary" %>
+					<% else %>
+					<%= link_to "フォローする",follow_path(u),method: :post, class: "btn btn-success" %>
+					<% end %>
+					<% end %>
+					</td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+<%= paginate @users %>
+</div>
+</div>
+</div>
+
+<% elsif @user_or_bike == "2" %>
 
 <% @bikes.each do |b| %>
 <div class="postlist">
@@ -31,11 +60,11 @@
 				<%= b.comments.count %>
 			</div>
 			<!-- いいね -->
-			<div class="inline-block" id ="likes_area_<%= b.id %>">
+			<div class="inline-block" id="likes_area">
 				<%= render partial: "likes/like", locals: {like: b, bike: b} %>
 			</div>
 			<!-- お気に入り -->
-			<div class="inline-block" id="bookmark_area_<%= b.id %>">
+			<div class="inline-block" id="bookmark_area">
 				<%= render partial: "bookmarks/bookmark", locals: {bookmark: b, bike: b} %>
 			</div>
 		</div>
@@ -73,8 +102,10 @@
 		</div>
 </div>
 </div>
+<% else %>
 <% end %>
 <div class="col-xs-offset-3">
 	<%= paginate @bikes %>
 </div>
 
+<% end %>

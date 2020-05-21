@@ -24,7 +24,7 @@
 
 		<div class="col-xs-offset-2">
 			<!-- いいね -->
-			<div class="inline-block" id="likes_area">
+			<div class="inline-block" id="likes_area_<%= b.id %>">
 				<%= render partial: "likes/like", locals: {like: @like, bike: @bike} %>
 			</div>
 		</div>
@@ -40,10 +40,11 @@
 		</div>
 
 		<div class="col-xs-offset-2">
-			<h4>タイトル</h4>
+			<p>ジャンル</p>
 			<% @bike.tags.each do |t| %>
 			   ・<%= t.tag_name %>
 			<% end %><br>
+			<h4>内容</h4>
 			<%= @bike.title %>
 		</div><br>
 

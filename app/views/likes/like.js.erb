@@ -1,1 +1,3 @@
-$("#likes_area").html("<%= j(render 'like', {like: @like, bike: @bike}) %>")
+$("#likes_area_<%= @bike.id %>").html("<%= j(render 'like', {like: @like, bike: @bike}) %>")
+// id="likes_area"を書き換える処理
+// @likeをローカル変数likeに入れる

@@ -18,11 +18,11 @@
 				<%= b.comments.count %>
 			</div>
 			<!-- いいね -->
-			<div class="inline-block" id="likes_area">
+			<div class="inline-block" id="likes_area_<%= b.id %>">
 				<%= render partial: "likes/like", locals: {like: b, bike: b} %>
 			</div>
 			<!-- お気に入り -->
-			<div class="inline-block" id="bookmark_area">
+			<div class="inline-block" id="bookmark_area_<%= b.id %>">
 				<%= render partial: "bookmarks/bookmark", locals: {bookmark: b, bike: b} %>
 			</div>
 		</div>
@@ -38,10 +38,11 @@
 		</div>
 
 		<div class="col-xs-offset-2">
-			<h4>タイトル</h4>
+			<p>ジャンル</p>
 			<% b.tags.each do |t| %>
 			   ・<%= t.tag_name %>
 			<% end %><br>
+			<h4>内容</h4>
 			<%= b.title %>
 		</div><br>
 

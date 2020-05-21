@@ -32,10 +32,6 @@ class UsersController < ApplicationController
 		@users = User.page(params[:page]).per(10)
 	end
 
-	def search
-		@users = User.all.search(params[:search]).page(params[:page]).per(10)
-	end
-
 	private
 	def user_params
 		params.require(:user).permit(:user_id, :name, :bike_name, :profile_image)

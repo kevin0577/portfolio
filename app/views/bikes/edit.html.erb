@@ -11,11 +11,11 @@
             <%= f.attachment_field :image, class: "col-xs-offset-2"%><br>
 
 		<div class="field">
-			<%= f.text_area :title, placeholder: "タイトル", size: "50x10" %>
+			<%= f.text_area :title, placeholder: "内容", size: "50x10" %>
 		</div><br>
 
 		<div class="check_box">
-			<p>タグ</p>
+			<p>ジャンル</p>
 			<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |t| %>
 				<div>
 				<%= t.label do %>

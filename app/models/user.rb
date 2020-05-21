@@ -27,9 +27,9 @@ class User < ApplicationRecord
  	following_user.include?(user)
  end
 
- def self.search(search)
-    if search
-      where(["name LIKE ? OR bike_name LIKE ?", "%#{search}%", "%#{search}%"])
+ def User.search(search, user_or_bike)
+    if user_or_bike == "1"
+     User.where(["name LIKE ? OR bike_name LIKE ?", "%#{search}%", "%#{search}%"])
     else
       all
     end

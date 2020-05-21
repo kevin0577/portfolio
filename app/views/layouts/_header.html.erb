@@ -12,8 +12,9 @@
           <li><%= link_to "投稿一覧", bikes_path %></li>
           <li><%= link_to "投稿フォーム", new_bike_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <div class="search col-xs-offset-6">
-          <%= form_tag(users_search_path, :method => "get") do %>
+          <div class="search col-xs-offset-4">
+          <%= form_tag(searchs_path, :method => "get") do %>
+          <%= select_tag(:option, options_for_select([["ユーザー", "1"],["投稿内容", "2"]])) %>
           <%= text_field_tag :search %>
           <%= submit_tag "search" %>
           <% end %>
