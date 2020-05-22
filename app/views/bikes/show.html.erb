@@ -24,7 +24,7 @@
 
 		<div class="col-xs-offset-2">
 			<!-- いいね -->
-			<div class="inline-block" id="likes_area_<%= b.id %>">
+			<div class="inline-block" id="likes_area_<%= @bike.id %>">
 				<%= render partial: "likes/like", locals: {like: @like, bike: @bike} %>
 			</div>
 		</div>
