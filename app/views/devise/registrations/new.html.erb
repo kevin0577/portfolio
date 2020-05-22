@@ -1,3 +1,9 @@
+<div class="row">
+  <div class="col-xs-offset-4">
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+</div>
+
 <div class="back">
   <div class="signup">
     <h2>Sign up</h2>
@@ -5,29 +11,28 @@
   <br>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "名前" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "名前を入力", size: "25" %>
   </div><br>
 
   <div class="field">
-    <%= f.text_field :bike_name, autofocus: true, autocomplete: "bike_name", placeholder: "バイク種類" %>
+    <%= f.text_field :bike_name, autofocus: true, autocomplete: "bike_name", placeholder: "車種名を入力", size: "25" %>
   </div><br>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力", size: "25" %>
   </div><br>
 
   <div class="field">
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力", size: "25" %>
   </div><br>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用パスワード" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用パスワードを入力", size: "25" %>
   </div><br>
 
   <div class="actions">

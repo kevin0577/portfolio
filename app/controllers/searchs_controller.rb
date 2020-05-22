@@ -1,4 +1,5 @@
 class SearchsController < ApplicationController
+	before_action :authenticate_user!
 	def index
 		@user_or_bike = params[:option]
 		if @user_or_bike == "1"

@@ -9,11 +9,11 @@
     パスワードを入力してください</p><br>
 
     <div >
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力", size: "25" %>
     </div><br>
 
     <div >
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力", size: "25" %>
     </div>
 
     <% if devise_mapping.rememberable? %>

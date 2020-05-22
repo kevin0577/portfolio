@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        bike_name: 車種名
+        email: メールアドレス
+        password: パスワード
+      bike:
+        image: 画像
+        title: 内容

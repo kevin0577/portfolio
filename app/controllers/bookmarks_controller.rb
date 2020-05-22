@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+	before_action :authenticate_user!
 	def index
 		@bikes = current_user.bookmarks_bikes.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
 	end
