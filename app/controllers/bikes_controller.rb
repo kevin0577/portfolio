@@ -16,6 +16,9 @@ class BikesController < ApplicationController
 
 	def edit
 		@bike = Bike.find(params[:id])
+		if @bike.user != current_user
+			redirect_to bike_path
+		end
 	end
 
 	def create

@@ -11,3 +11,4 @@ Tag.create([
     { tag_name: "パーツ紹介" },
     { tag_name: "スポット紹介"},
     ])
+
