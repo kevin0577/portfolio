@@ -1,24 +1,25 @@
-# README
+アプリ名
+バイカーズ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+サイト概要
+写真をベースとしたSNSなので、従来のブログなどとは違い、シンプルな仕様にすることで投稿をしやすくしています！
+ユーザー同士のアクション機能（フォロー、いいね！、コメント）で気になるユーザーとの交流や情報交換をすることもできます！
 
-Things you may want to cover:
+サイトテーマ
+バイク乗りのためのSNSサイトです
 
-* Ruby version
+テーマを選んだ理由
+自分がバイクや車が好きで、バイク専用のSNSサイトを作りたいと思ったからです。
 
-* System dependencies
+ターゲットユーザ
+バイクや車が好きな方です
 
-* Configuration
+主な利用シーン
+愛車のカスタムや愛用品を写真で簡単に共有することができ、他のユーザーの投稿を参考にすることも出来ます。
 
-* Database creation
+設計書
 
-* Database initialization
+機能一覧
+https://docs.google.com/spreadsheets/d/18iFdWn3Ajghqj0Fnu0vjLWlizLTrCONLyReY9Nd5_Qk/edit?usp=sharing
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
