@@ -40,7 +40,6 @@ RSpec.describe "投稿のテスト", type: :feature do
   			visit new_bike_path
   		end
   		it "投稿に成功する" do
-  			fill_in "bike[image]", with: image
   			fill_in "bike[title]", with: bike.title
   			click_button "投稿"
   			expect(page).to have_content "successfully"
