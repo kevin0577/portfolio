@@ -25,7 +25,7 @@ class BikesController < ApplicationController
 		@newbike = Bike.new(bike_params)
 		@newbike.user_id = current_user.id
 		if @newbike.save
-			flash[:notice] = "successfully create bike!"
+			flash[:notice] = "投稿しました！"
 			redirect_to bikes_path
 		else
 			render :new
@@ -35,7 +35,7 @@ class BikesController < ApplicationController
 	def update
 		@bike = Bike.find(params[:id])
 		if @bike.update(bike_params)
-			flash[:notice] = "successfully update bike!"
+			flash[:notice] = "編集しました！"
 			redirect_to bike_path(@bike)
 		else
 			render :edit
@@ -45,7 +45,7 @@ class BikesController < ApplicationController
 	def destroy
 		@bike = Bike.find(params[:id])
 		@bike.destroy
-		redirect_to bikes_path, notice: "successfully delete bike!"
+		redirect_to bikes_path, notice: "削除しました！"
 	end
 
 	private
