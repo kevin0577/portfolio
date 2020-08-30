@@ -77,10 +77,12 @@ gem "jquery-rails"
 gem "dotenv-rails"
 
 group :production do
-  gem 'mysql2'
+  gem "mysql2"
 end
 
-gem 'rails-i18n'
+gem "rails-i18n"
+
+gem "ransack"
 
 
 

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.all.page(params[:page]).per(10)
+		@search = User.ransack(params[:q])
+		@users = @search.result(distinct: true).page(params[:page]).per(10)
 	end
 
 	def edit
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		@user = current_user
 		if @user.update(user_params)
 			flash[:notice] = "編集しました！"
 			redirect_to user_path(current_user)

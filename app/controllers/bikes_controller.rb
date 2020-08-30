@@ -34,6 +34,7 @@ class BikesController < ApplicationController
 
 	def update
 		@bike = Bike.find(params[:id])
+		@user = current_user
 		if @bike.update(bike_params)
 			flash[:notice] = "編集しました！"
 			redirect_to bike_path(@bike)
